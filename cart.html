@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECOMMERCE WEBSITE</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <section id="header">
+        <a href="#"><img src="images\op.png" class="logo" alt=""></a>
+
+        <div>
+            <ul id="navbar">
+                <li><a href="index.html">Home</a></li>
+                <li><a  href="shop.html">Shop</a></li>
+                <li><a  href="blog.html">Blog</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a  href="contact.html">Contact</a></li>
+                <li id="lg-bag"><a class="active" href="cart.html"><i class="far fa-shopping-bag"></i></a></li>
+                <a href="#" id="close"><i class="far fa-times"></i></a>
+            </ul>
+        </div>
+        <div id="mobile">
+
+            <a href="cart.html"><i class="far fa-shopping-bag"></i></a>
+            <i id="bar" class="fas fa-outdent"></i>
+        </div>
+    </section>
+
+    <section id="page-header" class="cart">
+        <h2>#Cart</h2>
+        <h4>Happy Shopping!</h4>
+    </section>
+    
+    <section id="cart" class="selection-p1">
+        <table width="100%">
+            <thead>
+                <tr>
+                    <td>Remove</td>
+                    <td>Product</td>
+                    <td>Product details</td>
+                    <td>Price</td>
+                    <td>Quantity</td>
+                    <td>Subtotal</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a href="#"><i class="far fa-times-circle"></i></a></td>
+                    <td><img src="images\p11.jpg" alt=""></td>
+                    <td>Astro Bear Tshirt</td>
+                    <td class="price">Rs 599</td>
+                    <td class="quantity"><input type="number" value="1"></td>
+                    <td class="subtotal">Rs 599</td>
+                </tr>
+                <tr>
+                    <td><a href="#"><i class="far fa-times-circle"></i></a></td>
+                    <td><img src="images\p12.jpg" alt=""></td>
+                    <td>Geisha Inspired Tshirt</td>
+                    <td class="price">Rs 599</td>
+                    <td class="quantity"><input type="number" value="1"></td>
+                    <td class="subtotal">Rs 599</td>
+                </tr>
+                <tr>
+                    <td><a href="#"><i class="far fa-times-circle"></i></a></td>
+                    <td><img src="images\p13.jpg" alt=""></td>
+                    <td>Gangster Tom Tshirt</td>
+                    <td class="price">Rs 599</td>
+                    <td class="quantity"><input type="number" value="1"></td>
+                    <td class="subtotal">Rs 599</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="cart-add" class="selection-p1">
+        <div id="coupon">
+            <h3>Apply coupon</h3>
+            <div>
+                <input type="text" placeholder="Enter Your Coupon">
+                <button class="normal">Apply</button>
+        </div>
+        </div>
+
+        <div id="subtotal">
+            <h3>Cart Total</h3>
+            <table>
+                <tr>
+                    <td>Cart Subtotal</td>
+                    <td class="total">Rs 1797</td>
+                </tr>
+                <tr>
+                    <td>Shipping</td>
+                    <td>Free</td>
+                </tr>
+                <tr>
+                    <td><strong>Total</strong></td>
+                    <td class="total">Rs 1797</td>
+                </tr>
+            </table>
+            <a href="checkout.html">
+                <button class="normal">Proceed to checkout</button>
+            </a>
+            
+        </div>
+
+    </section>
+
+    <footer class="selection-p1">
+        <!-- Footer content here... -->
+    </footer>
+
+    <script>
+        // Function to calculate and update the total price based on the quantities
+        function updateTotalPrice() {
+            const rows = document.querySelectorAll('#cart tbody tr');
+
+            let cartSubtotal = 0;
+            rows.forEach(row => {
+                const price = parseFloat(row.querySelector('.price').textContent.replace('Rs ', ''));
+                const quantity = parseInt(row.querySelector('.quantity input').value);
+                const subtotal = price * quantity;
+
+                row.querySelector('.subtotal').textContent = `Rs ${subtotal}`;
+                cartSubtotal += subtotal;
+            });
+
+            const cartTotal = document.querySelectorAll('#subtotal .total');
+            cartTotal.forEach(total => {
+                total.textContent = `Rs ${cartSubtotal}`;
+            });
+
+            // Update the total in the header as well
+            document.querySelector('#lg-bag a').setAttribute('data-total', cartSubtotal);
+        }
+
+        // Attach input event listeners to quantity inputs
+        const quantityInputs = document.querySelectorAll('.quantity input');
+        quantityInputs.forEach(input => {
+            input.addEventListener('input', updateTotalPrice);
+        });
+
+        // Initial total update
+        updateTotalPrice();
+    </script>
+</body>
+
+
+</html>
+
