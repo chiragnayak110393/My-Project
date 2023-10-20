@@ -1,0 +1,1 @@
+# My-Project To Run this project on your system download Xampp server on your Pc , Start the Apache and Sql server,Create your own database by logging in php admin by typing localhost/phpadmin and create a test folder and create a table name project thats it now Run your project
